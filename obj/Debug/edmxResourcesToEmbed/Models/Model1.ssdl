@@ -1,0 +1,74 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="localModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'local.dbo.categoria' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+  <EntityType Name="categoria">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nombre" Type="varchar" MaxLength="50" />
+    <Property Name="padre" Type="int" />
+    <Property Name="activo" Type="bit" />
+  </EntityType>
+  <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'local.dbo.empleado' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+  <EntityType Name="empleado">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nombre" Type="varchar" MaxLength="30" />
+    <Property Name="usuario" Type="varchar" MaxLength="30" />
+    <Property Name="contraseña" Type="varchar" MaxLength="30" />
+    <Property Name="rol" Type="int" />
+    <Property Name="imagen" Type="varchar" MaxLength="100" />
+    <Property Name="email" Type="varchar" MaxLength="30" />
+  </EntityType>
+  <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'local.dbo.producto' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+  <EntityType Name="producto">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nombre" Type="varchar" MaxLength="50" />
+    <Property Name="descripcion" Type="varchar" MaxLength="50" />
+    <Property Name="activo" Type="bit" />
+    <Property Name="imagen" Type="varchar" MaxLength="100" />
+    <Property Name="categoria" Type="int" />
+    <Property Name="subcategoria" Type="int" />
+  </EntityType>
+  <EntityContainer Name="localModelStoreContainer">
+    <EntitySet Name="categoria" EntityType="Self.categoria" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [categoria].[id] AS [id], 
+    [categoria].[nombre] AS [nombre], 
+    [categoria].[padre] AS [padre], 
+    [categoria].[activo] AS [activo]
+    FROM [dbo].[categoria] AS [categoria]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="empleado" EntityType="Self.empleado" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [empleado].[id] AS [id], 
+    [empleado].[nombre] AS [nombre], 
+    [empleado].[usuario] AS [usuario], 
+    [empleado].[contraseña] AS [contraseña], 
+    [empleado].[rol] AS [rol], 
+    [empleado].[imagen] AS [imagen], 
+    [empleado].[email] AS [email]
+    FROM [dbo].[empleado] AS [empleado]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="producto" EntityType="Self.producto" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [producto].[id] AS [id], 
+    [producto].[nombre] AS [nombre], 
+    [producto].[descripcion] AS [descripcion], 
+    [producto].[activo] AS [activo], 
+    [producto].[imagen] AS [imagen], 
+    [producto].[categoria] AS [categoria], 
+    [producto].[subcategoria] AS [subcategoria]
+    FROM [dbo].[producto] AS [producto]</DefiningQuery>
+    </EntitySet>
+  </EntityContainer>
+</Schema>
