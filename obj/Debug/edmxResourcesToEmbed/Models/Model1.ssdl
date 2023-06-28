@@ -39,7 +39,18 @@ advertencia 6002: La tabla o vista 'local.dbo.producto' no tiene definida ningun
     <Property Name="categoria" Type="int" />
     <Property Name="subcategoria" Type="int" />
   </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
   <EntityContainer Name="localModelStoreContainer">
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="categoria" EntityType="Self.categoria" store:Type="Tables" store:Schema="dbo">
       <DefiningQuery>SELECT 
     [categoria].[id] AS [id], 
